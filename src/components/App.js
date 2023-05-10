@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
@@ -9,17 +9,6 @@ import PostDetail from './PostDetail';
 import EditPost from './EditPost';
 
 function App() {
-  const [currentCity, setCurrentCity] = useState({})
-  const [currentPost, setCurrentPost] = useState({})
-
-  function selectCity(city) {
-    setCurrentCity(() => city)
-  }
-
-  function selectPost(post) {
-    setCurrentPost(() => post)
-  }
-
   return (
     <div id='app'>
       <NavBar />
@@ -27,11 +16,11 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route 
           path='/cities' 
-          element={<CityList onSelectCity={selectCity} />} 
+          element={<CityList />} 
         />
         <Route 
           path='/cities/:city_id/posts' 
-          element={<PostList currentCity={currentCity} onSelectPost={selectPost} />} 
+          element={<PostList />} 
         />
         <Route 
           path='/cities/:city_id/posts/new' 
@@ -39,7 +28,7 @@ function App() {
         />
         <Route 
           exact path='/cities/:city_id/posts/:post_id' 
-          element={<PostDetail currentPost={currentPost} />} 
+          element={<PostDetail />} 
         />
         <Route 
           path='/cities/:city_id/posts/:post_id/edit' 
