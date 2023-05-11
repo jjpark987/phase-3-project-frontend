@@ -18,7 +18,7 @@ function App() {
         setCities(d)
     })
     .catch(e => console.log(e))
-}, [])
+  }, [])
 
   return (
     <div id='app'>
@@ -37,12 +37,12 @@ function App() {
           element={<PostList />} 
         />
         <Route 
-          path='/cities/:city_id/posts/new' 
-          element={<NewPost />} 
-        />
-        <Route 
           exact path='/cities/:city_id/posts/:post_id' 
           element={<PostDetail />} 
+        />
+        <Route 
+          path='/cities/:city_id/posts/new' 
+          element={<NewPost />} 
         />
         <Route 
           path='/cities/:city_id/posts/:post_id/edit' 

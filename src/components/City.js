@@ -3,15 +3,12 @@ import { Link } from "react-router-dom";
 
 function City({ city }) {
     return (
-        <div id='city'>
+        <div id='city-item'>
             <Link to={`/cities/${city.id}/posts`}>
                 <img src={city.image} alt="city" />
+                <h3>{city.name}, {city.country}</h3>
             </Link>
-            <Link to={`/cities/${city.id}/posts`}>
-                <h3>{city.name}</h3>
-            </Link>
-            <p>{city.population}</p>
-            <p>{city.country}</p>
+            <p>Pop: {parseInt(city.population).toLocaleString()}</p>
         </div>
     )
 }

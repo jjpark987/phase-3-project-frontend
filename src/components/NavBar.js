@@ -13,7 +13,7 @@ function NavBar({ cities }) {
         <nav>
             <NavLink to='/' activeclassname='active'>Home</NavLink>
             <NavLink to='/cities' activeclassname='active'>City List</NavLink>
-            <NavLink to={`/cities/${randomId}`} activeclassname='active' onClick={randomCityId}>Random City</NavLink>
+            <NavLink to={`/cities/${randomId}/posts`} activeclassname='active' onClick={randomCityId}>Random City</NavLink>
         </nav>
     )
 }

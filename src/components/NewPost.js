@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function NewPost() {
     const [newPost, setNewPost] = useState({
@@ -38,7 +38,8 @@ function NewPost() {
 
     return (
         <div id='new-post'>
-            <h1>NewPost</h1>
+            <Link to={`/cities/${city_id}/posts`}><p>Back to city</p></Link>
+            <h1>New Post</h1>
             <form id='new-post-form' onSubmit={submitNewPost}>
                 <label htmlFor='category'>Category: </label>
                 <select 
@@ -57,7 +58,7 @@ function NewPost() {
                    id='title' 
                     name='title'
                     required
-                    placeholder='Best Hiking Areas'
+                    placeholder='ex. Best Hiking Areas'
                     value={newPost.title}
                     onChange={updateNewPost}
                 />
@@ -66,7 +67,7 @@ function NewPost() {
                     id='body' 
                     name='body'
                     required
-                    placeholder='These are my picks for the top hiking spots...'
+                    placeholder='ex. These are my picks for the top hiking spots...'
                     value={newPost.body}
                     onChange={updateNewPost}
                 />
