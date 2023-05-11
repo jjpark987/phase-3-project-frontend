@@ -49,7 +49,7 @@ function NewPost() {
                     onChange={updateNewPost}
                 >
                     <option disabled value=''>Select category</option>
-                    <option value='general'>General: holistic thoughts/experiences</option>
+                    <option value='general'>General: thoughts/experiences</option>
                     <option value='activity'>Activity: specific activities/events</option>
                 </select>
                 <label htmlFor='title'>Title: </label>

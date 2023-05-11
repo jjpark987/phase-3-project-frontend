@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function EditPost() {
-    const [editPost, setEditPost] = useState({})
+    const [editPost, setEditPost] = useState({
+        category: '',
+        title: '',
+        body: ''
+    })
     const { city_id, post_id } = useParams()
     const navigate = useNavigate()
 
@@ -23,7 +27,7 @@ function EditPost() {
 
     function submitEditPost(e) {
         e.preventDefault()
-        fetch(`http://localhost:9292/cities/${city_id}/posts/${post_id}`, {
+        fetch(`http://localhost:9292/posts/${post_id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

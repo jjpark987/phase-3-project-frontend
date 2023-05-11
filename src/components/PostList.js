@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import { Link, useParams } from "react-router-dom";
-import City from "./City";
 
 function PostList() {
     const [currentCity, setCurrentCity] = useState({})
@@ -21,7 +20,10 @@ function PostList() {
     return (
         <div id='post-list'>
             <h1>PostList</h1>
-            <City city={currentCity} />
+            <img src={currentCity.image} alt='city' />
+            <h3>{currentCity.name}</h3>
+            <h3>{currentCity.population}</h3>
+            <h3>{currentCity.country}</h3>
             <Link to={`/cities/${city_id}/posts/new`}>
                 <button id='new-post-btn'>Add Post</button>
             </Link>

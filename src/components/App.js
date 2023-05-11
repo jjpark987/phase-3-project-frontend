@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
@@ -9,14 +9,28 @@ import PostDetail from './PostDetail';
 import EditPost from './EditPost';
 
 function App() {
+  const [cities, setCities] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/cities")
+    .then(r => r.json())
+    .then(d => {
+        setCities(d)
+    })
+    .catch(e => console.log(e))
+}, [])
+
   return (
     <div id='app'>
-      <NavBar />
+      <NavBar cities={cities} />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route 
+          path='/' 
+          element={<Home />} 
+        />
         <Route 
           path='/cities' 
-          element={<CityList />} 
+          element={<CityList cities={cities} />} 
         />
         <Route 
           path='/cities/:city_id/posts' 

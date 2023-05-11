@@ -39,6 +39,7 @@ function PostDetail() {
                 <button id='edit-post-btn'>Edit Post</button>
             </Link>
             <button id='delete-post-btn' onClick={() => deletePost(currentPost)}>Delete Post</button>
+            <Link to={`/cities/${city_id}/posts`}><p>Back to list</p></Link>
         </div>
     )
 }
