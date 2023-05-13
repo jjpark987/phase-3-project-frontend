@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function NewPost() {
+function NewPost({ cities, onUpdatePosts }) {
+    const { city_id } = useParams()
     const [newPost, setNewPost] = useState({
         category: '',
         title: '',
         body: ''
     })
-    const { city_id } = useParams()
     const navigate = useNavigate()
+    const currentCity = (cities[parseInt(city_id) - 1])
 
     function updateNewPost(e) {
         setNewPost({ ...newPost, [e.target.name]: e.target.value })
@@ -30,51 +31,53 @@ function NewPost() {
         })
         .then(r => r.json())
         .then(d => {
-            console.log(d)
+            onUpdatePosts('post', d)
             navigate(`/cities/${city_id}/posts`)
         })
         .catch(e => console.log(e))
     }
 
-    return (
-        <div id='new-post'>
-            <Link to={`/cities/${city_id}/posts`}><p>Back to city</p></Link>
-            <h1>New Post</h1>
-            <form id='new-post-form' onSubmit={submitNewPost}>
-                <label htmlFor='category'>Category: </label>
-                <select 
-                    id='category' 
-                    name='category'
-                    required
-                    value={newPost.category}
-                    onChange={updateNewPost}
-                >
-                    <option disabled value=''>Select category</option>
-                    <option value='general'>General: thoughts/experiences</option>
-                    <option value='activity'>Activity: specific activities/events</option>
-                </select>
-                <label htmlFor='title'>Title: </label>
-                <input 
-                   id='title' 
-                    name='title'
-                    required
-                    placeholder='ex. Best Hiking Areas'
-                    value={newPost.title}
-                    onChange={updateNewPost}
-                />
-                <label htmlFor='body'>Body: </label>
-                <textarea 
-                    id='body' 
-                    name='body'
-                    required
-                    placeholder='ex. These are my picks for the top hiking spots...'
-                    value={newPost.body}
-                    onChange={updateNewPost}
-                />
-                <button id='submit-new-post-btn'>Submit Post</button>
-            </form>
-        </div>
-    )
+    if (currentCity) {
+        return (
+            <div id='new-post'>
+                <h3>{currentCity.name}, {currentCity.country}</h3>
+                <h1>New Post</h1>
+                <form id='new-post-form' onSubmit={submitNewPost}>
+                    <label htmlFor='category'>Category: </label>
+                    <select 
+                        id='category' 
+                        name='category'
+                        required
+                        value={newPost.category}
+                        onChange={updateNewPost}
+                    >
+                        <option disabled value=''>Select category</option>
+                        <option value='general'>General: thoughts/experiences</option>
+                        <option value='activity'>Activity: specific activities/events</option>
+                    </select>
+                    <label htmlFor='title'>Title: </label>
+                    <input 
+                       id='title' 
+                        name='title'
+                        required
+                        placeholder='ex. Best Hiking Areas'
+                        value={newPost.title}
+                        onChange={updateNewPost}
+                    />
+                    <label htmlFor='body'>Body: </label>
+                    <textarea 
+                        id='body' 
+                        name='body'
+                        required
+                        placeholder='ex. These are my picks for the top hiking spots...'
+                        value={newPost.body}
+                        onChange={updateNewPost}
+                    />
+                    <button id='submit-new-post-btn'>Submit Post</button>
+                </form>
+            </div>
+        )
+    } 
 }
 
 export default NewPost;
