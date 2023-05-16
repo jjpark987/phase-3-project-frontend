@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewCity({ onUpdateCities }) {
+function NewCity({ onUpdateAllCities }) {
     const [newCity, setNewCity] = useState({
         name: '',
         country: '',
@@ -30,7 +30,7 @@ function NewCity({ onUpdateCities }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdateCities('post', d)
+            onUpdateAllCities('post', d)
             navigate('/cities')
         })
         .catch(e => console.log(e))
@@ -45,6 +45,7 @@ function NewCity({ onUpdateCities }) {
                     id='name' 
                     name='name'
                     required
+                    placeholder='ex. Paris'
                     value={newCity.name}
                     onChange={updateNewCity}
                 />
@@ -53,6 +54,7 @@ function NewCity({ onUpdateCities }) {
                     id='country'
                     name='country'
                     required
+                    placeholder='ex. France'
                     value={newCity.country}
                     onChange={updateNewCity}
                 />
@@ -61,6 +63,7 @@ function NewCity({ onUpdateCities }) {
                     id='population'
                     name='population'
                     required
+                    placeholder='ex. 2100000000'
                     value={newCity.population}
                     onChange={updateNewCity}
                 />
@@ -69,6 +72,7 @@ function NewCity({ onUpdateCities }) {
                     id='image'
                     name='image'
                     required
+                    placeholder='ex. https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg'
                     value={newCity.image}
                     onChange={updateNewCity}
                 />

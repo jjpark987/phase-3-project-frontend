@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
@@ -10,34 +10,34 @@ import NewPost from './NewPost';
 import EditPost from './EditPost';
 
 function App() {
-  const [cities, setCities] = useState([])
-  const [posts, setPosts] = useState([])
+  const [allCities, setAllCities] = useState([])
+  const [allPosts, setAllPosts] = useState([])
+  const [city, setCity] = useState(null)
+  const [post, setPost] = useState(null)
   const [randomId, setRandomId] = useState(0)
+  const updateCity = useCallback(city_id => setCity(allCities.find(city => city.id === parseInt(city_id))), [allCities])
+  const updatePost = useCallback(post_id => setPost(allPosts.find(post => post.id === parseInt(post_id))), [allPosts])
 
-  function updateCities(method, targetCity) {
+  function updateAllCities(method, targetCity) {
     switch (method) {
       case 'post':
-        setCities([ ...cities, targetCity ])
+        setAllCities([ ...allCities, targetCity ])
         break
       case 'delete':
-        setCities(cities.filter(city => city.id !== targetCity.id))
+        setAllCities(allCities.filter(city => city.id !== targetCity.id))
         break
       default:
         break
     }
   }
 
-  function initializePosts(initialPosts) {
-    setPosts(initialPosts)
-  }
-
-  function updatePosts(method, targetPost) {
+  function updateAllPosts(method, targetPost) {
     switch (method) {
       case 'post':
-        setPosts([ ...posts, targetPost ])
+        setAllPosts([ ...allPosts, targetPost ])
         break
       case 'patch':
-        setPosts(posts.map(post => {
+        setAllPosts(allPosts.map(post => {
           if (post.id === targetPost.id) {
             return {
               ...post,
@@ -50,7 +50,7 @@ function App() {
         }))
         break
       case 'delete':
-        setPosts(posts.filter(post => post.id !== targetPost.id))
+        setAllPosts(allPosts.filter(post => post.id !== targetPost.id))
         break
       default:
         break
@@ -58,43 +58,71 @@ function App() {
   }
 
   function updateRandomId() {
-    const randomIndex = Math.floor(Math.random() * cities.length)
-    setRandomId(cities[randomIndex].id)
+    setRandomId(allCities[Math.floor(Math.random() * allCities.length)].id)
   }
 
   useEffect(() => {
     fetch('http://localhost:9292/cities')
     .then(r => r.json())
     .then(d => {
-        setCities(d)
+        setAllCities(d)
+        setRandomId(d[Math.floor(Math.random() * d.length)].id)
     })
+    .catch(e => console.log(e))
+
+    fetch('http://localhost:9292/posts')
+    .then(r => r.json())
+    .then(d => setAllPosts(d))
     .catch(e => console.log(e))
   }, [])
 
   return (
     <div id='app'>
-      <NavBar randomId={randomId} onUpdateRandomId={updateRandomId} />
+      <NavBar 
+        randomId={randomId} 
+        onUpdateRandomId={updateRandomId} 
+      />
       <Routes>
         <Route path='/' element={
           <Home />
         } />
         <Route path='/cities' element={
-          <CityList cities={cities} onUpdateCities={updateCities} />
-        } />
-        <Route path='/cities/:city_id/posts' element={
-          <PostList posts={posts} onInitializePosts={initializePosts} />
-        } />
-        <Route path='/cities/:city_id/posts/:post_id' element={
-          <PostDetail onUpdatePosts={updatePosts} />
+          <CityList 
+            allCities={allCities} 
+          />
         } />
         <Route path='/cities/new' element={
-          <NewCity onUpdateCities={updateCities} />
+          <NewCity 
+            onUpdateAllCities={updateAllCities} 
+          />
+        } />
+        <Route path='/cities/:city_id/posts' element={
+          <PostList 
+            city={city}
+            onUpdateCity={updateCity}
+            onUpdateAllCities={updateAllCities} 
+          />
         } />
         <Route path='/cities/:city_id/posts/new' element={
-          <NewPost cities={cities} onUpdatePosts={updatePosts} />
+          <NewPost 
+            city={city}
+            onUpdateCity={updateCity}
+            onUpdateAllPosts={updateAllPosts} 
+          />
         } />
-        <Route path='/cities/:city_id/posts/:post_id/edit' element={
-          <EditPost onUpdatePosts={updatePosts} />
+        <Route path='/posts/:post_id' element={
+          <PostDetail 
+            post={post}
+            onUpdatePost={updatePost}
+            onUpdateAllPosts={updateAllPosts} 
+          />
+        } />
+        <Route path='/posts/:post_id/edit' element={
+          <EditPost 
+            post={post}
+            onUpdatePost={updatePost}
+            onUpdateAllPosts={updateAllPosts}
+          />
         } />
         <Route path='*' element={<h1>404 Not Available</h1>} />
       </Routes>

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function EditPost({ onUpdatePosts }) {
-    const { city_id, post_id } = useParams()
-    const [editPost, setEditPost] = useState(null)
+function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
+    const [editPost, setEditPost] = useState({
+        category: '',
+        title: '',
+        body: ''
+    })
+    const { post_id } = useParams()
     const navigate = useNavigate()
 
     function updateEditPost(e) {
@@ -25,28 +29,31 @@ function EditPost({ onUpdatePosts }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdatePosts('patch', d)
-            navigate(`/cities/${city_id}/posts`)
+            onUpdateAllPosts('patch', d)
+            navigate(`/cities/${post.city.id}/posts`)
         })
         .catch(e => console.log(e))
     }
 
     useEffect(() => {
+        onUpdatePost(post_id)
+
         fetch(`http://localhost:9292/posts/${post_id}`)
         .then(r => r.json())
-        .then(d => setEditPost({
-            category: d.category,
-            title: d.title,
-            body: d.body,
-            city: d.city
-        }))
+        .then(d => {
+            setEditPost({
+                category: d.category,
+                title: d.title,
+                body: d.body
+            })
+        })
         .catch(e => console.log(e))
-    }, [post_id])
+    }, [post_id, onUpdatePost])
 
-    if (editPost) {
+    if (post) {
         return (
             <div id='edit-post'>
-                <h3>{editPost.city.name}, {editPost.city.country}</h3>
+                <h3>{post.city.name}, {post.city.country}</h3>
                 <h1>Edit Post</h1>
                 <form id='edit-post-form' onSubmit={submitEditPost}>
                     <label htmlFor='category'>Category: </label>
