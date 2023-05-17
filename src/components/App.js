@@ -8,6 +8,7 @@ import PostDetail from './PostDetail';
 import NewCity from './NewCity';
 import NewPost from './NewPost';
 import EditPost from './EditPost';
+import '../App.css';
 
 function App() {
   const [allCities, setAllCities] = useState([])

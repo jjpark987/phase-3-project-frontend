@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+nav {
+  font-family: Apple Chancery, cursive, -apple-system;
+  font-size: large;
+  font-weight: 500;
+  background-color: rgb(88, 155, 249);
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 55px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav a {
+  color: rgb(0, 0, 255);
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#home {
+  font-family: Apple Chancery, cursive, -apple-system;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#home h1 {
+  font-size: 400%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#city-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
