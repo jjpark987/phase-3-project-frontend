@@ -21,22 +21,23 @@ function CityList({ allCities }) {
         <div id='city-list'>
             <button id='add-city-btn' onClick={() => navigate('/cities/new')}>Add City</button>
             <form id='search-sort-cities-form'>
-                <label htmlFor='search-city'>Search city: </label>
+                <label htmlFor='search-city' id='search-city-label'>Search city: </label>
                 <input 
                     id='search-city' 
+                    className='search-city' 
                     placeholder='ex. New York'
                     value={searchCity}
                     onChange={updateSearchCity}
                 />
-                <label htmlFor='sort-cities'>Sort by: </label>
+                <label htmlFor='sort-cities' id='sort-cities-label'>Sort by: </label>
                 <select 
                     id='sort-cities'
                     value={sortBy}
                     onChange={updateSortBy}
                 >
-                    <option value='population'>population</option>
-                    <option value='name'>city</option>
-                    <option value='country'>country</option>
+                    <option value='population'>Population</option>
+                    <option value='name'>City (A-Z)</option>
+                    <option value='country'>Country (A-Z)</option>
                 </select>
             </form>
             <div id='city-container'>

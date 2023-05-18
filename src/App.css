@@ -1,20 +1,27 @@
 nav {
-  font-family: Apple Chancery, cursive, -apple-system;
-  font-size: large;
-  font-weight: 500;
-  background-color: rgb(88, 155, 249);
+  font-size: x-large;
+  background-color: rgb(0, 0, 0);
   display: flex;
-  justify-content: space-evenly;
-  margin-left: 55px;
 }
 
 nav a {
-  color: rgb(0, 0, 255);
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
+#home-nav {
+  margin-left: 600px;
+}
+
+#city-list-nav {
+  margin-left: 265px;
+}
+
+#random-city-nav {
+  margin-left: 245px;
+}
+
 #home {
-  font-family: Apple Chancery, cursive, -apple-system;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,4 +35,37 @@ nav a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#add-city-btn {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#search-city, #sort-cities {
+  margin-left: 10px;
+  margin-right: 100px;
+}
+
+#sort-cities-label {
+  margin-left: 100px;
+}
+
+#city-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#city-item {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+#city-item a {
+  display: flex;
+  gap: 50px;
+  margin-right: 100px;
+  justify-content: left;
 }
