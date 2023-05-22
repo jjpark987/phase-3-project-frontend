@@ -1,71 +1,129 @@
+/* NavBar.js */
 nav {
-  font-size: x-large;
   background-color: rgb(0, 0, 0);
+  font-size: x-large;
   display: flex;
+  justify-content: center;
+  gap: 15vw;
+  padding-left: 65px;
 }
 
 nav a {
   color: rgb(255, 255, 255);
-  font-weight: bold;
 }
 
-#home-nav {
-  margin-left: 600px;
-}
-
-#city-list-nav {
-  margin-left: 265px;
-}
-
-#random-city-nav {
-  margin-left: 245px;
-}
-
-#home {
+/* Shared */
+.component {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3vh;
 }
 
+.container {
+  margin: 5vh 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.form-label {
+  margin-right: 10px;
+}
+
+.form-element {
+  margin-bottom: 3vh;
+}
+
+.input {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: x-large;
+  width: 50vw;
+}
+
+.textarea {
+  font-family: Impact, fantasy, -apple-system;
+  height: 20vh;
+  width: 50vw;
+  resize: none;
+}
+
+.btn {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: xx-large;
+  width: fit-content;
+  margin: 5vh auto;
+}
+
+.add-btn {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: xx-large;
+  width: fit-content;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+}
+
+.delete-btn {
+  font-family: Impact, fantasy, -apple-system;
+  font-size: large;
+  color: red;
+  margin-bottom: 5vh;
+}
+
+/* Home.js */
 #home h1 {
-  font-size: 400%;
+  font-size: 500%;
+  margin: 3vh auto;
 }
 
-#city-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* CityList.js */
+#search-city {
+  margin-right: 5vw;
 }
 
-#add-city-btn {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-#search-city, #sort-cities {
-  margin-left: 10px;
-  margin-right: 100px;
-}
-
-#sort-cities-label {
-  margin-left: 100px;
-}
-
-#city-container {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
+/* City.js */
 #city-item {
-  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
-  gap: 100px;
+  align-items: center;
+  gap: 10vw;
+  margin-bottom: 1vh;
 }
 
 #city-item a {
   display: flex;
-  gap: 50px;
-  margin-right: 100px;
-  justify-content: left;
+  align-items: center;
+  gap: 3vw;
+}
+
+/* PostList.js */
+#city-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Post.js */
+#post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  margin-bottom: 1vw;
+}
+
+/* PostDetail.js */
+#post-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 10vw;
+}
+
+#post-info p {
+  line-height: 4;
 }

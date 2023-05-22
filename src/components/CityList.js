@@ -18,18 +18,17 @@ function CityList({ allCities }) {
     }
 
     return (
-        <div id='city-list'>
-            <button id='add-city-btn' onClick={() => navigate('/cities/new')}>Add City</button>
-            <form id='search-sort-cities-form'>
-                <label htmlFor='search-city' id='search-city-label'>Search city: </label>
+        <div id='city-list' className='component'>
+            <button className='add-btn' onClick={() => navigate('/cities/new')}>Add City</button>
+            <form>
+                <label htmlFor='search-city' className='form-label'>Search city: </label>
                 <input 
                     id='search-city' 
-                    className='search-city' 
                     placeholder='ex. New York'
                     value={searchCity}
                     onChange={updateSearchCity}
                 />
-                <label htmlFor='sort-cities' id='sort-cities-label'>Sort by: </label>
+                <label htmlFor='sort-cities' className='form-label'>Sort by: </label>
                 <select 
                     id='sort-cities'
                     value={sortBy}
@@ -40,7 +39,7 @@ function CityList({ allCities }) {
                     <option value='country'>Country (A-Z)</option>
                 </select>
             </form>
-            <div id='city-container'>
+            <div className='container'>
                 {allCities
                     .sort((a, b) => sortFn(a, b))
                     .filter(city => filterFn(city))

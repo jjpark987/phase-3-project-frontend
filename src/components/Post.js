@@ -5,11 +5,13 @@ import { convertTimestamp } from "../utils";
 function Post({ post }) {
     return (
         <div id='post-item'>
-            <Link to={`/posts/${post.id}`}>
-                <h3>{post.title}</h3>
-            </Link>
-            <p>{post.category}</p>
-            <p>{convertTimestamp(post.created_at)}</p>
+            <div>
+                <Link to={`/posts/${post.id}`}>
+                    <h3>{post.title}</h3>
+                </Link>
+                <p>{post.category.charAt(0).toUpperCase() + post.category.slice(1)}</p>
+            </div>
+            <em>{convertTimestamp(post.created_at)}</em>
         </div>
     )
 }

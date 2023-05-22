@@ -40,26 +40,30 @@ function PostList({ city, onUpdateCity, onUpdateAllCities }) {
 
     if (city) {
         return (
-            <div id='post-list'>
+            <div id='post-list' className='component'>
                 <div id='city-info'>
-                    <img src={city.image} alt='city' />
+                    <img 
+                        src={city.image} 
+                        alt='city' 
+                        width='200px' 
+                    />
                     <h3>{city.name}, {city.country}</h3>
                     <p>Pop: {parseInt(city.population).toLocaleString()}</p>
                 </div>
-                <button id='add-post-btn' onClick={() => navigate(`/cities/${city_id}/posts/new`)}>Add Post</button>
-                <form id='filter-posts-form'>
-                    <label htmlFor='filter-posts'>Filter by: </label>
+                <button className='add-btn' onClick={() => navigate(`/cities/${city_id}/posts/new`)}>Add Post</button>
+                <form>
+                    <label htmlFor='filter-posts' className='form-label'>Filter by: </label>
                     <select 
                         id='filter-posts'
                         value={filterBy}
                         onChange={updateFilterBy}
                     >
-                        <option value='none'>none</option>
-                        <option value='general'>general</option>
-                        <option value='activity'>activity</option>
+                        <option value='none'>None</option>
+                        <option value='general'>General</option>
+                        <option value='activity'>Activity</option>
                     </select>
                 </form>
-                <div id='post-container'>
+                <div className='container'>
                     {posts.length ? 
                         posts
                             .sort((a, b) => sortFn(a, b))
@@ -73,7 +77,7 @@ function PostList({ city, onUpdateCity, onUpdateAllCities }) {
                         </div>
                     }
                 </div>
-                <button id='delete-city-btn' name='delete' onClick={() => deleteCity(city_id)}>Delete City</button>
+                <button className='delete-btn' onClick={() => deleteCity(city_id)}>Delete City</button>
             </div>
         )
     }

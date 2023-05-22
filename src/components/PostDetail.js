@@ -27,16 +27,16 @@ function PostDetail({ post, onUpdatePost, onUpdateAllPosts }) {
 
     if (post) {
         return (
-            <div id='post-detail'>
+            <div id='post-detail' className='component'>
                 <h3>{post.city.name}, {post.city.country}</h3>
                 <div id='post-info'>
                     <h1>{post.title}</h1>
-                    <h3>{post.category}</h3>
-                    <h3>{convertTimestamp(post.created_at)}</h3>
+                    <h3>{post.category.charAt(0).toUpperCase() + post.category.slice(1)}</h3>
+                    <em>{convertTimestamp(post.created_at)}</em>
                     <p>{post.body}</p>
                 </div>
-                <button id='edit-post-btn' onClick={() => navigate(`/posts/${post_id}/edit`)}>Edit Post</button>
-                <button id='delete-post-btn' onClick={() => deletePost(post)}>Delete Post</button>
+                <button className='btn' onClick={() => navigate(`/posts/${post_id}/edit`)}>Edit Post</button>
+                <button className='delete-btn' onClick={() => deletePost(post)}>Delete Post</button>
             </div>
         )
     }

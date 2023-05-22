@@ -5,7 +5,7 @@ function City({ city }) {
     return (
         <div id='city-item'>
             <Link to={`/cities/${city.id}/posts`}>
-                <img src={city.image} alt="city" />
+                <img src={city.image} alt='city' width='200px' />
                 <h3>{city.name}, {city.country}</h3>
             </Link>
             <p>Pop: {parseInt(city.population).toLocaleString()}</p>

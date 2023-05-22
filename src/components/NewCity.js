@@ -37,30 +37,33 @@ function NewCity({ onUpdateAllCities }) {
     }
 
     return (
-        <div id='new-city'>
+        <div id='new-city' className='component'>
             <h1>New City</h1>
-            <form id='new-city-form' name='submit' onSubmit={submitNewCity}>
-                <label htmlFor='name'>City: </label>
+            <form className='form' onSubmit={submitNewCity}>
+                <label htmlFor='new-city-name'>City: </label>
                 <input 
-                    id='name' 
+                    id='new-city-name' 
+                    class='form-element input'
                     name='name'
                     required
                     placeholder='ex. Paris'
                     value={newCity.name}
                     onChange={updateNewCity}
                 />
-                <label htmlFor='country'>Country: </label>
+                <label htmlFor='new-city-country'>Country: </label>
                 <input
-                    id='country'
+                    id='new-city-country'
+                    class='form-element input'
                     name='country'
                     required
                     placeholder='ex. France'
                     value={newCity.country}
                     onChange={updateNewCity}
                 />
-                <label htmlFor='population'>Population: </label>
+                <label htmlFor='new-city-population'>Population: </label>
                 <input 
-                    id='population'
+                    id='new-city-population'
+                    class='form-element input'
                     name='population'
                     required
                     placeholder='ex. 2100000000'
@@ -70,13 +73,14 @@ function NewCity({ onUpdateAllCities }) {
                 <label htmlFor='image'>Image URL: </label>
                 <input
                     id='image'
+                    class='form-element input'
                     name='image'
                     required
                     placeholder='ex. https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg'
                     value={newCity.image}
                     onChange={updateNewCity}
                 />
-                <button id='submit-new-city-btn' >Submit City</button>
+                <button className='btn'>Submit City</button>
             </form>
         </div>
     )

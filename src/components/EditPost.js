@@ -52,13 +52,14 @@ function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
 
     if (post) {
         return (
-            <div id='edit-post'>
+            <div id='edit-post' className='component'>
                 <h3>{post.city.name}, {post.city.country}</h3>
                 <h1>Edit Post</h1>
-                <form id='edit-post-form' onSubmit={submitEditPost}>
-                    <label htmlFor='category'>Category: </label>
+                <form className='form' onSubmit={submitEditPost}>
+                    <label htmlFor='edit-post-category'>Category: </label>
                     <select 
-                        id='category' 
+                        id='edit-post-category' 
+                        className='form-element'
                         name='category'
                         value={editPost.category}
                         onChange={updateEditPost}
@@ -66,23 +67,25 @@ function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
                         <option value='general'>General: holistic thoughts/experiences</option>
                         <option value='activity'>Activity: specific activities/events</option>
                     </select>
-                    <label htmlFor='title'>Title: </label>
+                    <label htmlFor='edit-post-title'>Title: </label>
                     <input 
-                        id='title' 
+                        id='edit-post-title' 
+                        className='form-element input'
                         name='title'
                         required
                         value={editPost.title}
                         onChange={updateEditPost}
                     />
-                    <label htmlFor='body'>Body: </label>
+                    <label htmlFor='edit-post-body'>Body: </label>
                     <textarea 
-                        id='body' 
+                        id='edit-post-body' 
+                        className='form-element textarea'
                         name='body'
                         required
                         value={editPost.body}
                         onChange={updateEditPost}
                     />
-                    <button id='submit-edit-post-btn'>Submit Post</button>
+                    <button className='btn'>Submit Post</button>
                 </form>
             </div>
         )

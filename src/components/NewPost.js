@@ -42,13 +42,14 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
 
     if (city) {
         return (
-            <div id='new-post'>
+            <div id='new-post' className='component'>
                 <h3>{city.name}, {city.country}</h3>
                 <h1>New Post</h1>
-                <form id='new-post-form' onSubmit={submitNewPost}>
-                    <label htmlFor='category'>Category: </label>
+                <form className='form' onSubmit={submitNewPost}>
+                    <label htmlFor='new-post-category'>Category: </label>
                     <select 
-                        id='category' 
+                        id='new-post-category' 
+                        className='form-element'
                         name='category'
                         required
                         value={newPost.category}
@@ -58,25 +59,27 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
                         <option value='general'>General: thoughts/experiences</option>
                         <option value='activity'>Activity: specific activities/events</option>
                     </select>
-                    <label htmlFor='title'>Title: </label>
+                    <label htmlFor='new-post-title'>Title: </label>
                     <input 
-                       id='title' 
+                        id='new-post-title' 
+                        class='form-element input'
                         name='title'
                         required
-                        placeholder='ex. Best Hiking Areas'
+                        placeholder='ex. Best Hiking Trails'
                         value={newPost.title}
                         onChange={updateNewPost}
                     />
-                    <label htmlFor='body'>Body: </label>
+                    <label htmlFor='new-post-body'>Body: </label>
                     <textarea 
-                        id='body' 
+                        id='new-post-body' 
+                        class='form-element textarea'
                         name='body'
                         required
                         placeholder='ex. These are my picks for the top hiking spots...'
                         value={newPost.body}
                         onChange={updateNewPost}
                     />
-                    <button id='submit-new-post-btn'>Submit Post</button>
+                    <button className='btn'>Submit Post</button>
                 </form>
             </div>
         )
