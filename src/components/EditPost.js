@@ -30,7 +30,7 @@ function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
         .then(r => r.json())
         .then(d => {
             onUpdateAllPosts('patch', d)
-            navigate(`/cities/${post.city.id}/posts`)
+            navigate(`/posts/${post_id}`)
         })
         .catch(e => console.log(e))
     }
