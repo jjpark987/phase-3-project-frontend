@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
     const [editPost, setEditPost] = useState({
@@ -53,7 +53,7 @@ function EditPost({ post, onUpdatePost, onUpdateAllPosts }) {
     if (post) {
         return (
             <div id='edit-post' className='component'>
-                <h3>{post.city.name}, {post.city.country}</h3>
+                <Link to={`/cities/${post.city.id}/posts`}>{post.city.name}, {post.city.country}</Link>
                 <h1>Edit Post</h1>
                 <form className='form' onSubmit={submitEditPost}>
                     <label htmlFor='edit-post-category'>Category: </label>

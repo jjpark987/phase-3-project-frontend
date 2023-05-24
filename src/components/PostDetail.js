@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { convertTimestamp } from "../utils";
 
 function PostDetail({ post, onUpdatePost, onUpdateAllPosts }) {
@@ -28,7 +28,7 @@ function PostDetail({ post, onUpdatePost, onUpdateAllPosts }) {
     if (post) {
         return (
             <div id='post-detail' className='component'>
-                <h3>{post.city.name}, {post.city.country}</h3>
+                <Link to={`/cities/${post.city.id}/posts`}>{post.city.name}, {post.city.country}</Link>
                 <div id='post-info'>
                     <h1>{post.title}</h1>
                     <h3>{post.category.charAt(0).toUpperCase() + post.category.slice(1)}</h3>

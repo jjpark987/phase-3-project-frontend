@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
     const [newPost, setNewPost] = useState({
@@ -43,7 +43,7 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
     if (city) {
         return (
             <div id='new-post' className='component'>
-                <h3>{city.name}, {city.country}</h3>
+                <Link to={`/cities/${city.id}/posts`}>{city.name}, {city.country}</Link>
                 <h1>New Post</h1>
                 <form className='form' onSubmit={submitNewPost}>
                     <label htmlFor='new-post-category'>Category: </label>

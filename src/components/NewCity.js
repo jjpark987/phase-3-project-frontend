@@ -66,7 +66,7 @@ function NewCity({ onUpdateAllCities }) {
                     class='form-element input'
                     name='population'
                     required
-                    placeholder='ex. 2100000000'
+                    placeholder='ex. 2100000'
                     value={newCity.population}
                     onChange={updateNewCity}
                 />
