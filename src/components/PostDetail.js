@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { convertTimestamp } from "../utils";
 
-function PostDetail({ post, onUpdatePost, onUpdateAllPosts }) {
+function PostDetail() {
+    const [post, setPost] = useState(null)
     const { post_id } = useParams()
     const navigate = useNavigate()
 
@@ -15,15 +16,17 @@ function PostDetail({ post, onUpdatePost, onUpdateAllPosts }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdateAllPosts('delete', d)
+            console.log(d)
             navigate(`/cities/${post.city.id}/posts`)
         })
         .catch(e => console.log(e))
     }
 
     useEffect(() => {
-        onUpdatePost(post_id)
-    }, [post_id, onUpdatePost])
+        fetch(`http://localhost:9292/posts/${post_id}`)
+        .then(r => r.json())
+        .then(d => setPost(d))
+    }, [post_id])
 
     if (post) {
         return (

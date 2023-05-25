@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
+function NewPost({ city, onUpdateCity }) {
     const [newPost, setNewPost] = useState({
         category: '',
         title: '',
@@ -30,7 +30,7 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdateAllPosts('post', d)
+            console.log(d)
             navigate(`/cities/${city_id}/posts`)
         })
         .catch(e => console.log(e))
@@ -62,7 +62,7 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
                     <label htmlFor='new-post-title'>Title: </label>
                     <input 
                         id='new-post-title' 
-                        class='form-element input'
+                        className='form-element input'
                         name='title'
                         required
                         placeholder='ex. Best Hiking Trails'
@@ -72,7 +72,7 @@ function NewPost({ city, onUpdateCity, onUpdateAllPosts }) {
                     <label htmlFor='new-post-body'>Body: </label>
                     <textarea 
                         id='new-post-body' 
-                        class='form-element textarea'
+                        className='form-element textarea'
                         name='body'
                         required
                         placeholder='ex. These are my picks for the top hiking spots...'

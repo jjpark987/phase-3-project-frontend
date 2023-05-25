@@ -43,7 +43,7 @@ function NewCity({ onUpdateAllCities }) {
                 <label htmlFor='new-city-name'>City: </label>
                 <input 
                     id='new-city-name' 
-                    class='form-element input'
+                    className='form-element input'
                     name='name'
                     required
                     placeholder='ex. Paris'
@@ -53,7 +53,7 @@ function NewCity({ onUpdateAllCities }) {
                 <label htmlFor='new-city-country'>Country: </label>
                 <input
                     id='new-city-country'
-                    class='form-element input'
+                    className='form-element input'
                     name='country'
                     required
                     placeholder='ex. France'
@@ -63,7 +63,7 @@ function NewCity({ onUpdateAllCities }) {
                 <label htmlFor='new-city-population'>Population: </label>
                 <input 
                     id='new-city-population'
-                    class='form-element input'
+                    className='form-element input'
                     name='population'
                     required
                     placeholder='ex. 2100000'
@@ -73,7 +73,7 @@ function NewCity({ onUpdateAllCities }) {
                 <label htmlFor='image'>Image URL: </label>
                 <input
                     id='image'
-                    class='form-element input'
+                    className='form-element input'
                     name='image'
                     required
                     placeholder='ex. https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg'
