@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { convertTimestamp } from "../utils";
 
-function PostDetail() {
-    const [post, setPost] = useState(null)
+function PostDetail({ onUpdateCities }) {
+    const [post, setPost] = useState({})
     const { post_id } = useParams()
     const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ function PostDetail() {
         })
         .then(r => r.json())
         .then(d => {
-            console.log(d)
+            onUpdateCities('delete post', d)
             navigate(`/cities/${post.city.id}/posts`)
         })
         .catch(e => console.log(e))
@@ -28,7 +28,7 @@ function PostDetail() {
         .then(d => setPost(d))
     }, [post_id])
 
-    if (post) {
+    if (post.city) {
         return (
             <div id='post-detail' className='component'>
                 <Link to={`/cities/${post.city.id}/posts`}>{post.city.name}, {post.city.country}</Link>

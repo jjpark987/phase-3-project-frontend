@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import City from "./City";
 import { useNavigate } from "react-router-dom";
 
-function CityList({ allCities }) {
+function CityList({ cities }) {
     const [searchCity, setSearchCity] = useState('')
     const [sortBy, setSortBy] = useState('population')
     const navigate = useNavigate()
@@ -40,7 +40,7 @@ function CityList({ allCities }) {
                 </select>
             </form>
             <div className='container'>
-                {allCities
+                {cities
                     .sort((a, b) => sortFn(a, b))
                     .filter(city => filterFn(city))
                     .map(city => (

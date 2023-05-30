@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import { useNavigate, useParams } from "react-router-dom";
 
-function PostList({ city, onUpdateCity, onUpdateAllCities }) {
-    const [posts, setPosts] = useState([])
+function PostList({ cities, onUpdateCities }) {
+    const [city, setCity] = useState({})
     const [filterBy, setFilterBy] = useState('none')
     const { city_id } = useParams()
     const navigate = useNavigate()
@@ -23,20 +23,15 @@ function PostList({ city, onUpdateCity, onUpdateAllCities }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdateAllCities('delete', d)
+            onUpdateCities('delete city', d)
             navigate('/cities')
         })
         .catch(e => console.log(e))
     }
 
     useEffect(() => {
-        onUpdateCity(city_id)
-
-        fetch(`http://localhost:9292/cities/${city_id}/posts`)
-        .then(r => r.json())
-        .then(d => setPosts(d))
-        .catch(e => console.log(e))
-    }, [city_id, onUpdateCity])
+        setCity(cities.find(city => city.id === parseInt(city_id)))
+    }, [cities, city_id])
 
     if (city) {
         return (
@@ -64,17 +59,15 @@ function PostList({ city, onUpdateCity, onUpdateAllCities }) {
                     </select>
                 </form>
                 <div className='container'>
-                    {posts.length ? 
-                        posts
+                    {city.posts && city.posts.length ? 
+                        city.posts
                             .sort((a, b) => sortFn(a, b))
                             .filter(post => filterFn(post))
                             .map(post => (
                                 <Post key={post.id} post={post} />
                             )) 
                         :
-                        <div id='no-posts-message'>
-                            <h1>No posts for this city</h1>    
-                        </div>
+                        <h1>No posts for this city</h1>
                     }
                 </div>
                 <button className='delete-btn' onClick={() => deleteCity(city_id)}>Delete City</button>

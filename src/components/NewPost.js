@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function NewPost({ city, onUpdateCity }) {
-    const [newPost, setNewPost] = useState({
-        category: '',
-        title: '',
-        body: ''
-    })
+function NewPost({ cities, onUpdateCities }) {
+    const [newPost, setNewPost] = useState({})
     const { city_id } = useParams()
     const navigate = useNavigate()
 
@@ -30,20 +26,25 @@ function NewPost({ city, onUpdateCity }) {
         })
         .then(r => r.json())
         .then(d => {
-            console.log(d)
+            onUpdateCities('post post', d)
             navigate(`/cities/${city_id}/posts`)
         })
         .catch(e => console.log(e))
     }
 
     useEffect(() => {
-        onUpdateCity(city_id)
-    }, [city_id, onUpdateCity])
+        setNewPost({
+            category: '',
+            title: '',
+            body: '',
+            city: cities.find(city => city.id === parseInt(city_id))
+        })
+    }, [cities, city_id])
 
-    if (city) {
+    if (newPost.city) {
         return (
             <div id='new-post' className='component'>
-                <Link to={`/cities/${city.id}/posts`}>{city.name}, {city.country}</Link>
+                <Link to={`/cities/${newPost.city.id}/posts`}>{newPost.city.name}, {newPost.city.country}</Link>
                 <h1>New Post</h1>
                 <form className='form' onSubmit={submitNewPost}>
                     <label htmlFor='new-post-category'>Category: </label>

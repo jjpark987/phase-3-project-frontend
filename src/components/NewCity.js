@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewCity({ onUpdateAllCities }) {
+function NewCity({ onUpdateCities }) {
     const [newCity, setNewCity] = useState({
         name: '',
         country: '',
@@ -30,7 +30,7 @@ function NewCity({ onUpdateAllCities }) {
         })
         .then(r => r.json())
         .then(d => {
-            onUpdateAllCities('post', d)
+            onUpdateCities('post city', d)
             navigate('/cities')
         })
         .catch(e => console.log(e))

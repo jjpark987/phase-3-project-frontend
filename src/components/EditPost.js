@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-function EditPost() {
-    const [editPost, setEditPost] = useState({
-        category: '',
-        title: '',
-        body: '',
-        city: []
-    })
+function EditPost({ onUpdateCities }) {
+    const [editPost, setEditPost] = useState({})
     const { post_id } = useParams()
     const navigate = useNavigate()
 
@@ -30,7 +25,7 @@ function EditPost() {
         })
         .then(r => r.json())
         .then(d => {
-            console.log(d)
+            onUpdateCities('patch post', d)
             navigate(`/posts/${post_id}`)
         })
         .catch(e => console.log(e))
@@ -50,7 +45,7 @@ function EditPost() {
         .catch(e => console.log(e))
     }, [post_id])
 
-    if (editPost) {
+    if (editPost.city) {
         return (
             <div id='edit-post' className='component'>
                 <Link to={`/cities/${editPost.city.id}/posts`}>{editPost.city.name}, {editPost.city.country}</Link>
