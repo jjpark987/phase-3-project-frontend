@@ -8,27 +8,27 @@ You can find more details about the backend implementation [here](https://github
 
 ## Description
 
-Travelogue offers users the option to explore cities either by browsing a list of cities or by directly accessing a randomly chosen city. Once a city is selected, users gain access to a collection of posts specific to that city. The application provides various interactive features, allowing users to create or delete a city, as well as create, edit, and delete posts related to the chosen city.
+Travelogue offers users the option to explore cities either by browsing a list of cities or by directly accessing a randomly chosen city. They can read, write, and delete posts for that city. Users can also create or delete cities.
 
 ### City List
 
-The City List component is responsible for rendering all cities stored in the database. By default, the cities are sorted in descending order based on their population. Users can narrow their search by directly typing in the input field. They also have the option to sort the current list by the city name or the country it resides in.
+The City List component is responsible for rendering all cities stored in the database. By default, the cities are sorted by population in descending order. Users can fine tune their search by typing in the input field. They also have the option to sort the current list by the city name or the country it resides in.
 
 At the top of the page is an "Add City" button that directs the users to a form where they can input the details of a new city.
 
 ### Post List
 
-Once a city has been selected, the Post List component displays all posts for that city. By default, the posts are sorted by date, with the newest ones appearing first. Each post is presented with its title, category, and the date it was created. Users have the option to filter the posts based on its category: "general" for thoughts/experiences and "activities" for specific activities/events. 
+Once a city is selected, the Post List component displays all posts for that city. By default, the posts are sorted by date in reverse chronological order. Each post displays its title, category, and the date it was created. Users have the option to filter the posts based on its category: "general" for thoughts/experiences and "activities" for specific activities/events. 
 
 Similar to City List, Post List has an "Add Post" button to create a new post. At the bottom of the page is the "Delete City" button to delete the current city.
 
 ### Post Detail
 
-The Post Detail component contains the body of the post, along with its title, category, and date. From here, users can choose to edit or delete the post by pressing the corresponding buttons.
+The Post Detail component renders the title, category, date, and body of the post. Users can choose to edit or delete the post by pressing the corresponding buttons.
 
 ### Random City
 
-If the user wants to browse the posts of a random city, they can click on the "Random City" tab at the top of the page. This programmatically navigates them directly to the Post List of that city.
+The "Random City" tab programmatically navigates them directly to the Post List of a random city.
 
 ## Support
 
