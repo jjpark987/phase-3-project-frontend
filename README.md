@@ -30,6 +30,10 @@ The Post Detail component renders the title, category, date, and body of the pos
 
 The "Random City" tab programmatically navigates them directly to the Post List of a random city.
 
+## Demo
+
+[Video Walkthrough](https://youtu.be/YYjzs0jWxEg)
+
 ## Support
 
 Please contact me at jjpark987@gmail.com for any questions.
